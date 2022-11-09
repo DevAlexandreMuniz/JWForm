@@ -1,4 +1,5 @@
 using JWForm.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using JWForm.Context;
 using JWForm.Models;
 
@@ -13,5 +14,5 @@ public class RelatorioRepository : IRelatorioRepository
         _context = context;
     }
 
-    public IEnumerable<Relatorio> Relatorios => _context.Relatorios;
+    public IEnumerable<Relatorio> Relatorios => _context.Relatorios.Include(i => i.Publicador);
 }
