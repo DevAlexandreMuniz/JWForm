@@ -1,33 +1,27 @@
+using JWForm.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using JWForm.Models;
 
 namespace JWForm.Controllers;
 
 public class RelatoriosController : Controller
 {
-    private readonly ILogger<RelatoriosController> _logger;
+    private readonly IRelatorioRepository _relatorioRepository;
 
-    public RelatoriosController(ILogger<RelatoriosController> logger)
+    public RelatoriosController(IRelatorioRepository relatorioRepository)
     {
-        _logger = logger;
+        _relatorioRepository = relatorioRepository;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> index()
     {
-
-        return View();
+        var relatorios = _relatorioRepository.Relatorios;
+        return View(relatorios);
     }
 
     public async Task<IActionResult> Criar()
     {
+        var relatorios = _relatorioRepository.Relatorios;
 
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(relatorios);
     }
 }

@@ -1,4 +1,6 @@
 using JWForm.Context;
+using JWForm.Repositories;
+using JWForm.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Contexto>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("db")));
+
+builder.Services.AddTransient<IPublicadorRepository, PublicadorRepository>();
+builder.Services.AddTransient<IRelatorioRepository, RelatorioRepository>();
 
 var app = builder.Build();
 
