@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JWForm.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221109085322_Genesis")]
+    [Migration("20221110132949_Genesis")]
     partial class Genesis
     {
         /// <inheritdoc />

@@ -1,27 +1,28 @@
-using JWForm.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using JWForm.Context;
 
 namespace JWForm.Controllers;
 
 public class RelatoriosController : Controller
 {
-    private readonly IRelatorioRepository _relatorioRepository;
+    private readonly Contexto _contexto;
 
-    public RelatoriosController(IRelatorioRepository relatorioRepository)
+    public RelatoriosController(Contexto contexto)
     {
-        _relatorioRepository = relatorioRepository;
+        _contexto = contexto;
     }
 
     public async Task<IActionResult> Criar()
     {
-        var relatorios = _relatorioRepository.Relatorios;
+        var relatorios = _contexto.Relatorios;
 
         return View(relatorios);
     }
 
     public async Task<IActionResult> Lista()
     {
-        var relatorios = _relatorioRepository.Relatorios;
+        var relatorios = await _contexto.Relatorios.ToListAsync();
         return View(relatorios);
     }
 }
