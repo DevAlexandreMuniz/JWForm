@@ -12,16 +12,16 @@ public class RelatoriosController : Controller
         _relatorioRepository = relatorioRepository;
     }
 
-    public async Task<IActionResult> index()
-    {
-        var relatorios = _relatorioRepository.Relatorios;
-        return View(relatorios);
-    }
-
     public async Task<IActionResult> Criar()
     {
         var relatorios = _relatorioRepository.Relatorios;
 
+        return View(relatorios);
+    }
+
+    public async Task<IActionResult> Lista()
+    {
+        var relatorios = _relatorioRepository.Relatorios;
         return View(relatorios);
     }
 }

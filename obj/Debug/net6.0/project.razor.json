@@ -16303,6 +16303,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\deval\\Documents\\GitHub\\JWForm\\Views\\Relatorios\\Lista.cshtml",
+      "TargetPath": "Views\\Relatorios\\Lista.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\deval\\Documents\\GitHub\\JWForm\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -16320,11 +16325,6 @@
     {
       "FilePath": "c:\\Users\\deval\\Documents\\GitHub\\JWForm\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\deval\\Documents\\GitHub\\JWForm\\Views\\Relatorios\\Index.cshtml",
-      "TargetPath": "Views\\Relatorios\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
