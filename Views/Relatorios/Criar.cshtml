@@ -7,7 +7,7 @@
 </div>
 <hr>
 
-<form asp-action="Criar" asp-controller="CadastroDePublicador" method="post" enctype="multipart/form-data">
+<form asp-action="Criar" asp-controller="Relatorios" method="post" enctype="multipart/form-data">
 
     <h2 class="mt-5">
         Publicador
@@ -15,7 +15,8 @@
 
     <div class="form-group mb-3">
         Selecione seu nome 
-        <select class="form-select" name="publicador" asp-items='(SelectList) ViewData["selectPublicador"]'>
+        <select class="form-select" name="publicador" 
+            asp-items='(SelectList) ViewData["listaDePublicadores"]'>
             <option value="">Publicadores</option>
         </select>
     </div>

@@ -17,7 +17,9 @@ public class RelatoriosController : Controller
 
     public async Task<IActionResult> Criar()
     {
-        
+        var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
+
+        ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");  
 
         var relatorios = await db.Relatorios.ToListAsync();
 
@@ -27,10 +29,6 @@ public class RelatoriosController : Controller
     [HttpPost]
     public async Task<IActionResult> Criar(int publicador, string mes, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
-        var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
-
-        ViewData["selectPublicador"] = new SelectList(publicadores, "Id", "Nome");
-
         var relatorios = new Relatorio(mes, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
         await db.Relatorios.AddAsync(relatorios);
