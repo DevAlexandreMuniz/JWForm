@@ -1,9 +1,31 @@
-@{
-    ViewData["Title"] = "Cadastrar Novo Publicador";
-}
+@model List<Publicador>
 
-<div>
-    <h1>
-        @ViewData["Title"]
+<div class="d-flex">
+    <h1 class="flex-grow-1">
+        Cadastrar Publicador
     </h1>
 </div>
+<hr>
+
+<form asp-action="Criar" asp-controller="CadastroDePublicador" method="post" enctype="multipart/form-data">
+
+    <div class="form-group mb-3">
+        Nome
+        <input class="form-control" name="nome" type="text">
+    </div>
+
+    <div class="form-group mb-3">
+        Grupo de Campo
+        <select class="form-select" name="grupoDeCampo">
+            <option value="">Selecione um Grupo</option>
+            <option value="Grupo do Alexandre">Grupo do Alexandre</option>
+            <option value="Grupo do Tiago">Grupo do Tiago</option>
+        </select>
+    </div>
+
+    <div class="d-grid gap-2 mt-3 mb-5">
+        <button type="submit" class="btn btn-primary btn-block"><em class="fas fa-arrow-right"></em>
+            Enviar Informações</button>
+    </div>
+
+</form>

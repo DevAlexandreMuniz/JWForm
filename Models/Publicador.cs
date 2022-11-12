@@ -4,6 +4,12 @@ namespace JWForm.Models;
 
 public class Publicador
 {
+    public Publicador(string nome, string grupoDeCampo)
+    {
+        Nome = nome;
+        GrupoDeCampo = grupoDeCampo;
+    }
+
     public int PublicadorId { get; set; }
 
     [StringLength(100, ErrorMessage = "O tamanho máximo é 100 caracteres")]

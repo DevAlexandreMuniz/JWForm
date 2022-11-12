@@ -15,7 +15,7 @@ public class RelatoriosController : Controller
 
     public async Task<IActionResult> Criar()
     {
-        var relatorios = _contexto.Relatorios;
+        var relatorios = await _contexto.Relatorios.ToListAsync();
 
         return View(relatorios);
     }
