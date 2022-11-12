@@ -7,7 +7,7 @@
 </div>
 <hr>
 
-<form>
+<form asp-action="Criar" asp-controller="CadastroDePublicador" method="post" enctype="multipart/form-data">
 
     <h2 class="mt-5">
         Publicador
@@ -15,7 +15,7 @@
 
     <div class="form-group mb-3">
         Selecione seu nome 
-        <select class="form-select" name="" id="">
+        <select class="form-select" name="publicador" asp-items='(SelectList) ViewData["selectPublicador"]'>
             <option value="">Publicadores</option>
         </select>
     </div>
@@ -26,39 +26,55 @@
 
     <div class="form-group mb-3">
         Mes do Relatório
-        <select class="form-select" name="" id="">
-            <option value="">Selecione o Mês</option>
+        <select class="form-select" name="mes">
+            <option value="Janeiro">Janeiro</option>
+            <option value="Fevereiro">Fevereiro</option>
+            <option value="Março">Março</option>
+            <option value="Abril">Abril</option>
+            <option value="Maio">Maio</option>
+            <option value="Junho">Junho</option>
+            <option value="Julho">Julho</option>
+            <option value="Agosto">Agosto</option>
+            <option value="Setembro">Setembro</option>
+            <option value="Outubro">Outubro</option>
+            <option value="Novembro">Novembro</option>
+            <option value="Dezembro">Dezembro</option>
         </select> 
     </div>
     
     <div class="col form-group">
         Publicações 
-        <input class="form-control" type="text">
+        <input class="form-control" name="publicacoes" type="number">
     </div>
 
     <div class="form-group mb-3">
         Videos 
-        <input class="form-control" type="text">
+        <input class="form-control" name="videos" type="number">
     </div>
 
     <div class="form-group mb-3">
         Revisitas 
-        <input class="form-control" type="text">
+        <input class="form-control" name="revisitas" type="number">
     </div>
 
     <div class="form-group mb-3">
         EstudosBibicos 
-        <input class="form-control" type="text">
+        <input class="form-control" name="estudosBiblicos" type="number">
     </div>
 
     <div class="form-group mb-3">
         Horas 
-        <input class="form-control" type="text">
+        <input class="form-control" name="horas" type="number">
     </div>
 
     <div class="form-group mb-3">
         Observacao 
-        <input class="form-control" type="text">
+        <input class="form-control" name="observacao" type="text">
+    </div>
+
+    <div class="d-grid gap-2 mt-3 mb-5">
+        <button type="submit" class="btn btn-primary btn-block"><em class="fas fa-arrow-right"></em>
+            Enviar relatório</button>
     </div>  
 
 </form>

@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using JWForm.Context;
 using JWForm.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace JWForm.Controllers;
 
@@ -28,6 +27,6 @@ public class CadastroDePublicadorController : Controller
         await db.Publicadores.AddAsync(publicador);
         await db.SaveChangesAsync();
 
-        return View("_sucesso");
+        return View("_cadastradoComSucesso");
     }
 }
