@@ -6,13 +6,25 @@
     </h1>
 </div>
 <hr>
-<Div>
+<div class="row">
     @foreach (var relatorio in Model)
     {
-        <div>
-            <h2> @relatorio.Publicador </h2>
-            <p> @relatorio.Mes </p>            
-            <p> @relatorio.Horas </p>
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Relatório de </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@relatorio.Publicador.Nome</h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Mês de @relatorio.Mes </strong></li>
+                    <li class="list-group-item">Publicações: @relatorio.Publicacoes</li>
+                    <li class="list-group-item">Vídeos: @relatorio.Videos</li>
+                    <li class="list-group-item">Revisitas: @relatorio.Revisitas</li>
+                    <li class="list-group-item">Estudos: @relatorio.EstudosBiblicos</li>
+                    <li class="list-group-item">Horas: @relatorio.Horas</li>
+                    <li class="list-group-item">Observações : @relatorio.Observacao</li>
+                </ul>     
+            </div>
         </div>
     }
 </Div>
