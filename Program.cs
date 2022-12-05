@@ -5,6 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddTiaIdentity()
+                .AddCookie(x =>
+                {
+                    x.LoginPath = "/autenticacao/login";                  
+                    x.AccessDeniedPath = "/autenticacao/acessonegado";                                
+                });    
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Contexto>(options =>
@@ -20,6 +27,8 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+app.UseTiaIdentity();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
