@@ -23,13 +23,13 @@ public class Usuario : IUsuario
     
     public string Login { get => Nome; }
 
-    [Required, MaxLength(50)]
+    [Required]
     public string Nome { get; set; }
 
-    [Required, MaxLength(20)]
+    [Required]
     public string Senha { get; set; } = Guid.NewGuid().ToString();
 
-    [Required, MaxLength(50), EmailAddress]
+    [Required, EmailAddress]
     public string Email { get; set; }
 
     public string Hash {get; set; }

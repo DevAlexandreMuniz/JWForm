@@ -1,13 +1,13 @@
 @model UsuarioVM
 
 <div class="input-field">
-    <input asp-for="Nome" class="validate" required maxlength="20">        
+    <input asp-for="Nome" class="validate" required maxlength="50">        
     <label asp-for="Nome"></label>
     <span class="helper-text" data-error='Campo obrigatório.'></span>
 </div>
 
 <div class="input-field">
-    <input asp-for="Email" class="validate" required maxlength="20" type='email'>        
+    <input asp-for="Email" class="validate" required maxlength="50" type='email'>        
     <label asp-for="Email"></label>
     <span class="helper-text" data-error='Campo obrigatório.'></span>
 </div>

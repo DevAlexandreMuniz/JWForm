@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddTransient<JWForm.Services.GeradorDeListas>(); 
 builder.Services.AddTiaIdentity()
                 .AddCookie(x =>
                 {

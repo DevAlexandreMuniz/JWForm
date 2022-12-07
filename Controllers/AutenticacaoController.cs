@@ -10,12 +10,10 @@ public class AutenticacaoController : Controller
 {
     private readonly Contexto db;
     private readonly TiaIdentity.Autenticador tiaIdentity;        
-    private readonly Email servicoDeEmail;
 
-    public AutenticacaoController(Contexto contexo,  TiaIdentity.Autenticador tiaIdentity, Email servicoDeEmail)
+    public AutenticacaoController(Contexto contexo,  TiaIdentity.Autenticador tiaIdentity)
     {
         this.db = contexo;
-        this.servicoDeEmail = servicoDeEmail;
         this.tiaIdentity = tiaIdentity;
     }
 
@@ -50,25 +48,7 @@ public class AutenticacaoController : Controller
     {
         return View();
     }
-
-    [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> EsqueciMinhaSenha(string email)
-    {
-        var usuario = await db.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
-
-        if (usuario is null)
-            return NotFound();
-        
-        usuario.GerarNovaHash();
-
-        db.Update(usuario);
-        await db.SaveChangesAsync();
-
-        //TODO: Descomentar se for utilizar
-        // await servicoDeEmail.EnviarEmailParaTrocaDeSenha(usuario.Email, usuario.Hash);                
-
-        return Ok();
-    }
+  
 
         public async Task<IActionResult> AlterarSenha(string id)
     {

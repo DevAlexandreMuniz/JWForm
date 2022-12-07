@@ -14,14 +14,12 @@ public class UsuariosController : Controller
 {
     private readonly Contexto db;
     private readonly Autenticador tiaIdentity;
-    private readonly Email email;
     private readonly GeradorDeListas geradorDeListas;
 
-    public UsuariosController(Contexto db, Autenticador tiaIdentity, Email email, GeradorDeListas geradorDeListas)
+    public UsuariosController(Contexto db, Autenticador tiaIdentity, GeradorDeListas geradorDeListas)
     {
         this.db = db;
         this.tiaIdentity = tiaIdentity;
-        this.email = email;
         this.geradorDeListas = geradorDeListas;
     }
 
