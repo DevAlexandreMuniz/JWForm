@@ -37,6 +37,15 @@ public class RelatoriosController : Controller
         return View("_enviadoComSucesso");
     }
 
+    public async Task<IActionResult> Resumo()
+    {
+        var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
+
+        var totalDeHoras = relatorios.Where(w => )
+
+        return View(relatorios);
+    }
+
     public async Task<IActionResult> Lista()
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();

@@ -4,10 +4,11 @@ namespace JWForm.Models;
 
 public class Publicador
 {
-    public Publicador(string nome, string grupoDeCampo)
+    public Publicador(string nome, string grupoDeCampo, TipoPublicador tipo)
     {
         Nome = nome;
         GrupoDeCampo = grupoDeCampo;
+        Tipo = tipo;
     }
 
     public int PublicadorId { get; set; }
@@ -21,6 +22,8 @@ public class Publicador
     [Required(ErrorMessage = "Escreva o nome do grupo de campo")]
     [Display(Name = "Nome")]
     public string GrupoDeCampo { get; set; }
+
+    public TipoPublicador Tipo { get; set; }
     
     public bool EnviouORelatorio { get; set; }
 

@@ -20,9 +20,9 @@ public class CadastroDePublicadorController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Criar(string nome, string grupoDeCampo)
+    public async Task<IActionResult> Criar(string nome, string grupoDeCampo, TipoPublicador tipo)
     {
-        var publicador = new Publicador(nome, grupoDeCampo);
+        var publicador = new Publicador(nome, grupoDeCampo, tipo);
 
         await db.Publicadores.AddAsync(publicador);
         await db.SaveChangesAsync();

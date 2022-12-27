@@ -1,7 +1,7 @@
-using JWForm.Context;
-using JWForm.Repositories;
 using JWForm.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using JWForm.Repositories;
+using JWForm.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
