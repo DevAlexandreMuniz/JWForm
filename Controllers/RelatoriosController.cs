@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using JWForm.ViewModels;
 using JWForm.Context;
 using JWForm.Models;
 
@@ -37,13 +38,22 @@ public class RelatoriosController : Controller
         return View("_enviadoComSucesso");
     }
 
-    public async Task<IActionResult> Resumo()
+    public async Task<IActionResult> Resumo(ResumoVM viewModel)
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
+        var publicadores = await db.Publicadores.ToListAsync();
 
-        var totalDeHoras = relatorios.Where(w => )
+        viewModel.totalDeHorasPublicadoresNaoBatizado = publicadores.Where(w => w.Tipo == TipoPublicador.NaoBatizado);
 
-        return View(relatorios);
+        viewModel.totalDeHorasPublicadoresBatizado = publicadores.Where(w => w.Tipo == TipoPublicador.Batizado);
+
+        viewModel.totalDeHorasPioneiroAuxiliar = publicadores.Where(w => w.Tipo == TipoPublicador.PioneiroAuxiliar);
+
+        viewModel.totalDeHorasPioneiroRegular = publicadores.Where(w => w.Tipo == TipoPublicador.PioneiroRegular);
+
+        viewModel.totalDeHoras = relatorios.Sum(s => s.Horas);
+
+        return View(viewModel);
     }
 
     public async Task<IActionResult> Lista()
