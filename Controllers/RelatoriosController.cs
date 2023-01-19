@@ -41,15 +41,14 @@ public class RelatoriosController : Controller
     public async Task<IActionResult> Resumo(ResumoVM viewModel)
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
-        var publicadores = await db.Publicadores.ToListAsync();
 
-        viewModel.totalDeHorasPublicadoresNaoBatizado = publicadores.Where(w => w.Tipo == TipoPublicador.NaoBatizado);
+        viewModel.totalDeHorasPublicadoresNaoBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPublicadoresBatizado = publicadores.Where(w => w.Tipo == TipoPublicador.Batizado);
+        viewModel.totalDeHorasPublicadoresBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.Batizado).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneiroAuxiliar = publicadores.Where(w => w.Tipo == TipoPublicador.PioneiroAuxiliar);
+        viewModel.totalDeHorasPioneirosAuxiliares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneiroRegular = publicadores.Where(w => w.Tipo == TipoPublicador.PioneiroRegular);
+        viewModel.totalDeHorasPioneirosRegulares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular).Sum(s => s.Horas);
 
         viewModel.totalDeHoras = relatorios.Sum(s => s.Horas);
 

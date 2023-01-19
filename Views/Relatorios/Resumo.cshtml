@@ -5,15 +5,85 @@
         Resumo do Serviço
     </h1>
 </div>
+
 <hr>
 
-//Exibir Total de Horas de
-@Model.totalDeHoras
+<div class="row">
 
-//Publicadores Batizados
+    <div class='col-md-6 col-lg-3 mb-2'>
+        <div class="card">
+            <div class="card-body">
 
-//Publicadores Não Batizados
+                <h2 class='mt-4'>
+                    @Model.totalDeHoras
+                </h2>
 
-//Pioneiros Auxiliares
+                <p>
+                    Total De Horas Geral
+                </p>
 
-//Pioneiros Regulares
+            </div>
+        </div>
+    </div>
+
+    <div class='col-md-6 col-lg-3 mb-2'>
+        <div class="card">
+            <div class="card-body">
+
+                <h2 class='mt-4'>
+                    @Model.totalDeHorasPublicadoresBatizados
+                </h2>
+
+                <p>
+                    Publicadores Não Batizados
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class='col-md-6 col-lg-3 mb-2'>
+        <div class="card">
+            <div class="card-body">
+                <h2 class='mt-4'>
+                    @Model.totalDeHorasPublicadoresNaoBatizados
+                </h2>
+                <p>
+                    Publicadores Batizados
+                </p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class='col-md-6 col-lg-3 mb-2'>
+        <div class="card">
+            <div class="card-body">
+
+                <h2 class='mt-4'>
+                    @Model.totalDeHorasPioneirosAuxiliares
+                </h2>
+                <p>
+                    Pioneiros Auxiliares
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class='col-md-6 col-lg-3 mb-2'>
+        <div class="card">
+            <div class="card-body">
+
+                <h2 class='mt-4'>
+                    @Model.totalDeHorasPioneirosRegulares
+                </h2>
+                <p>
+                    Pioneiros Regulares
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>

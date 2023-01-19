@@ -4,13 +4,13 @@ namespace JWForm.ViewModels;
 
 public class ResumoVM
 {
-    public IEnumerable<Publicador> totalDeHorasPublicadoresNaoBatizado {get; set; }
+    public int totalDeHorasPublicadoresNaoBatizados {get; set; }
 
-    public IEnumerable<Publicador> totalDeHorasPublicadoresBatizado {get; set; }
+    public int totalDeHorasPublicadoresBatizados {get; set; }
 
-    public IEnumerable<Publicador> totalDeHorasPioneiroAuxiliar {get; set; }
+    public int totalDeHorasPioneirosAuxiliares {get; set; }
 
-    public IEnumerable<Publicador> totalDeHorasPioneiroRegular {get; set; }
+    public int totalDeHorasPioneirosRegulares {get; set; }
     public int totalDeHoras {get; set; }
     
 }
