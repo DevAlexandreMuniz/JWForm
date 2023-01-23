@@ -28,7 +28,7 @@ public class RelatoriosController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Criar(int publicador, string mes, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
+    public async Task<IActionResult> Criar(int publicador, DateTime mes, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
         var relatorios = new Relatorio(mes, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
@@ -38,19 +38,19 @@ public class RelatoriosController : Controller
         return View("_enviadoComSucesso");
     }
 
-    public async Task<IActionResult> Resumo(ResumoVM viewModel)
+    public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime mes)
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
 
-        viewModel.totalDeHorasPublicadoresNaoBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado).Sum(s => s.Horas);
+        viewModel.totalDeHorasPublicadoresNaoBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado && w.Mes == mes).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPublicadoresBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.Batizado).Sum(s => s.Horas);
+        viewModel.totalDeHorasPublicadoresBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.Batizado && w.Mes == mes).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneirosAuxiliares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar).Sum(s => s.Horas);
+        viewModel.totalDeHorasPioneirosAuxiliares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar && w.Mes == mes).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneirosRegulares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular).Sum(s => s.Horas);
+        viewModel.totalDeHorasPioneirosRegulares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular && w.Mes == mes).Sum(s => s.Horas);
 
-        viewModel.totalDeHoras = relatorios.Sum(s => s.Horas);
+        viewModel.totalDeHoras = relatorios.Where(w => w.Mes == mes).Sum(s => s.Horas);
 
         return View(viewModel);
     }

@@ -7,6 +7,18 @@
 </div>
 
 <hr>
+<form asp-action="Resumo" asp-controller="Relatorios" method="post" enctype="multipart/form-data">
+    <label for="birthday">Escolha o mês:</label>
+    <input type="month" name="mes">
+
+    <div class=" mt-3 mb-5">
+        <button class="btn btn-outline-primary" type="submit">
+            <em class="fas fa-search"></em> Analizar
+        </button>
+    </div>
+    
+</form>
+
 
 <div class="row">
 
@@ -31,11 +43,11 @@
             <div class="card-body">
 
                 <h2 class='mt-4'>
-                    @Model.totalDeHorasPublicadoresBatizados
+                    @Model.totalDeHorasPublicadoresNaoBatizados
                 </h2>
 
                 <p>
-                    Publicadores Não Batizados
+                    Horas de Publicadores Não Batizados
                 </p>
 
             </div>
@@ -46,10 +58,10 @@
         <div class="card">
             <div class="card-body">
                 <h2 class='mt-4'>
-                    @Model.totalDeHorasPublicadoresNaoBatizados
+                    @Model.totalDeHorasPublicadoresBatizados
                 </h2>
                 <p>
-                    Publicadores Batizados
+                    Horas de Publicadores Batizados
                 </p>
 
             </div>
@@ -64,7 +76,7 @@
                     @Model.totalDeHorasPioneirosAuxiliares
                 </h2>
                 <p>
-                    Pioneiros Auxiliares
+                    Horas de Pioneiros Auxiliares
                 </p>
             </div>
 
@@ -79,7 +91,7 @@
                     @Model.totalDeHorasPioneirosRegulares
                 </h2>
                 <p>
-                    Pioneiros Regulares
+                    Horas de Pioneiros Regulares
                 </p>
             </div>
 
