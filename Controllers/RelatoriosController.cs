@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using JWForm.ViewModels;
 using JWForm.Context;
 using JWForm.Models;
+using System.Diagnostics;
 
 namespace JWForm.Controllers;
 
@@ -59,5 +60,11 @@ public class RelatoriosController : Controller
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
         return View(relatorios);
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
