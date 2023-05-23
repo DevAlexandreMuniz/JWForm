@@ -23,14 +23,18 @@ public class RelatoriosController : Controller
 
         ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");  
 
+        ViewData["Mes"] = DateTime.Today.AddMonths(-1).ToString("MMMM-yyyy");
+
         var relatorios = await db.Relatorios.ToListAsync();
 
         return View(relatorios);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Criar(int publicador, DateTime mes, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
+    public async Task<IActionResult> Criar(int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
+        var mes = DateTime.Today.AddMonths(-1);
+   
         var relatorios = new Relatorio(mes, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
         await db.Relatorios.AddAsync(relatorios);
