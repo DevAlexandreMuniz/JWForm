@@ -2,10 +2,44 @@
 
 <div class="d-flex">
     <h1 class="flex-grow-1">
-        Todos os Relatórios
+        Relatórios
     </h1>
 </div>
+
 <hr>
+
+<form method='get'>
+
+    <div class='row'>
+
+		<div class='col-md-2'>
+            <select class="form-select mb-3" name="publicador" 
+                asp-items='(SelectList) ViewData["listaDePublicadores"]'>
+                <option value="">Publicadores</option>
+            </select>
+		</div>
+
+		<div class='col-md-2'>
+            <input class="form-select mb-3" name="mes" type="month">
+		</div>
+
+        <div class='col-md-2 d-flex justify-content-end'>
+			<button class="btn btn-outline-secondary mb-3" type="button" id='btnLimpar'>
+				<i class="fas fa-redo"></i> Limpar
+			</button>
+			</br>
+		</div>
+
+        <div class='col-md-2 d-flex justify-content-end'>
+			<button class="btn btn-outline-primary mb-3 " type="submit">
+				<em class="fas fa-search"></em> Buscar
+			</button>
+		</div>
+
+    </div>
+
+</form>
+
 <div class="row">
     @foreach (var relatorio in Model)
     {

@@ -85,9 +85,17 @@ public class RelatoriosController : Controller
         return View(viewModel);
     }
 
-    public async Task<IActionResult> Listar()
+    public async Task<IActionResult> Listar(string publicador, DateTime mes)
     {
-        var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
+        var relatorios = await db.Relatorios
+            .Include(i => i.Publicador)
+            .Where(w => w.Publicador.Nome == publicador && w.Mes == mes)
+            .ToListAsync();
+
+        var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
+
+        ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");
+
         return View(relatorios);
     }
 
