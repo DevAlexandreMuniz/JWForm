@@ -85,11 +85,11 @@ public class RelatoriosController : Controller
         return View(viewModel);
     }
 
-    public async Task<IActionResult> Listar(string publicador, DateTime mes)
+    public async Task<IActionResult> Listar(int publicadorId, DateTime mes)
     {
         var relatorios = await db.Relatorios
             .Include(i => i.Publicador)
-            .Where(w => w.Publicador.Nome == publicador && w.Mes == mes)
+            .Where(w => w.Publicador.PublicadorId == publicadorId && w.Mes.Month == mes.Month)
             .ToListAsync();
 
         var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
