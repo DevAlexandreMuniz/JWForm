@@ -9,8 +9,9 @@
 <div class="row">
     @foreach (var relatorio in Model)
     {
+        
         <div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
+            <a class="list-group-item list-group-item-action d-flex card" style="width: 18rem;" asp-action="Editar" asp-route-id="@relatorio.RelatorioId">
                 <div class="card-body">
                     <h5 class="card-title">Relatório de </h5>
                     <h6 class="card-subtitle mb-2 text-muted">@relatorio.Publicador.Nome</h6>
@@ -25,7 +26,8 @@
                     <li class="list-group-item">Horas: @relatorio.Horas</li>
                     <li class="list-group-item">Observações : @relatorio.Observacao</li>
                 </ul>     
-            </div>
+            </a>
         </div>
+        
     }
 </Div>

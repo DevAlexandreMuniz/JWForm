@@ -43,6 +43,31 @@ public class RelatoriosController : Controller
         return View("_enviadoComSucesso");
     }
 
+    public async Task<IActionResult> Editar(int id)
+    {
+        var relatorio = await db.Relatorios.Include(i => i.Publicador).SingleOrDefaultAsync(a => a.RelatorioId == id);
+
+        var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
+
+        ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");
+
+        return View(relatorio);
+    }
+
+     [HttpPost]
+    public async Task<IActionResult> Editar(int relatorioId, DateTime mes, int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
+    {
+
+        var relatorio = await db.Relatorios.Include(i => i.Publicador).SingleOrDefaultAsync(a => a.RelatorioId == relatorioId);
+
+        relatorio.Atualizar(mes, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
+
+        db.Update(relatorio);
+        await db.SaveChangesAsync();
+
+        return View("_enviadoComSucesso");
+    }
+
     public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime mes)
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();

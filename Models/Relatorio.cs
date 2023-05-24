@@ -16,6 +16,18 @@ public class Relatorio
         PublicadorId = publicadorId;
     }
 
+    public void Atualizar(DateTime mes, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao, int publicadorId)
+    {
+        Mes = mes;
+        Videos = videos;
+        Publicacoes = publicacoes;
+        Revisitas = revisitas;
+        EstudosBiblicos = estudosBiblicos;
+        Horas = horas;
+        Observacao = observacao;
+        PublicadorId = publicadorId;
+    }
+
     public int RelatorioId { get; set; }
 
     [StringLength(50, ErrorMessage = "O tamanho máximo é 50 caracteres")]

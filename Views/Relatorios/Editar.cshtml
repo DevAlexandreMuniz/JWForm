@@ -1,0 +1,72 @@
+@model Relatorio
+
+<div class="d-flex">
+    <h1 class="flex-grow-1">
+        Editar Relatorio
+    </h1>
+</div>
+
+<hr>
+
+<form asp-action="Editar" method="post">
+
+    <input hidden asp-for="RelatorioId" />
+
+    <h2 class="mt-5">
+        Publicador
+    </h2>
+
+
+    <div class="form-group mb-3">
+        Selecione o nome do Publicador
+        <select class="form-select" name="publicador" 
+            asp-items='(SelectList) ViewData["listaDePublicadores"]'>
+            <option value="">Publicadores</option>
+        </select>
+    </div>
+
+    <h2 class="mt-5">
+        Relatório
+    </h2>
+
+
+    Selecione o Mês:
+    <input class="form-control" name="mes" type="month">
+
+    
+    <div class="col form-group">
+        Publicações:
+        <input class="form-control" name="publicacoes" type="number">
+    </div>
+
+    <div class="form-group mb-3">
+        Videos:
+        <input class="form-control" name="videos" type="number">
+    </div>
+
+    <div class="form-group mb-3">
+        Revisitas:
+        <input class="form-control" name="revisitas" type="number">
+    </div>
+
+    <div class="form-group mb-3">
+        Estudos Bíblicos:
+        <input class="form-control" name="estudosBiblicos" type="number">
+    </div>
+
+    <div class="form-group mb-3">
+        Horas:
+        <input class="form-control" name="horas" type="number">
+    </div>
+
+    <div class="form-group mb-3">
+        Observações: 
+        <input class="form-control" name="observacao" type="text">
+    </div>
+
+    <div class="form-group mt-5">
+        <a asp-action="listar" class="btn btn-light"> Cancelar</a>
+        <button type="submit" class="btn btn-primary"> Salvar</button>
+    </div>
+
+</form>
