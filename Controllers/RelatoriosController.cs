@@ -60,7 +60,7 @@ public class RelatoriosController : Controller
         return View(viewModel);
     }
 
-    public async Task<IActionResult> Lista()
+    public async Task<IActionResult> Listar()
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
         return View(relatorios);

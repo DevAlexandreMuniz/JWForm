@@ -11,6 +11,13 @@ public class Publicador
         Tipo = tipo;
     }
 
+    public void Atualizar(string nome, string grupoDeCampo, TipoPublicador tipo)
+    {
+        Nome = nome;
+        GrupoDeCampo = grupoDeCampo;
+        Tipo = tipo;
+    }
+
     public int PublicadorId { get; set; }
 
     [StringLength(100, ErrorMessage = "O tamanho máximo é 100 caracteres")]

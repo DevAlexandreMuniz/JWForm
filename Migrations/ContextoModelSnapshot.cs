@@ -48,7 +48,7 @@ namespace JWForm.Migrations
 
                     b.HasKey("PublicadorId");
 
-                    b.ToTable("Publicadores");
+                    b.ToTable("Publicadores", (string)null);
                 });
 
             modelBuilder.Entity("JWForm.Models.Relatorio", b =>
@@ -90,7 +90,7 @@ namespace JWForm.Migrations
 
                     b.HasIndex("PublicadorId");
 
-                    b.ToTable("Relatorios");
+                    b.ToTable("Relatorios", (string)null);
                 });
 
             modelBuilder.Entity("JWForm.Models.Usuario", b =>
@@ -126,7 +126,7 @@ namespace JWForm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("JWForm.Models.Relatorio", b =>
