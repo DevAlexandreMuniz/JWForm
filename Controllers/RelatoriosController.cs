@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using JWForm.ViewModels;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 
 namespace JWForm.Controllers;
 
+[Authorize]
 public class RelatoriosController : Controller
 {
     private readonly Contexto db;
@@ -17,6 +19,7 @@ public class RelatoriosController : Controller
         db = contexto;
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Criar()
     {
         var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
@@ -97,11 +100,5 @@ public class RelatoriosController : Controller
         ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");
 
         return View(relatorios);
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

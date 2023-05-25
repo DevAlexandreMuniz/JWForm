@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using JWForm.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using JWForm.Repositories;
@@ -6,13 +7,17 @@ using JWForm.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddTransient<JWForm.Services.GeradorDeListas>(); 
-builder.Services.AddTiaIdentity()
-                .AddCookie(x =>
-                {
-                    x.LoginPath = "/autenticacao/login";                  
-                    x.AccessDeniedPath = "/autenticacao/acessonegado";                                
-                });    
+builder.Services.AddTransient<JWForm.Services.GeradorDeListas>();   
+
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o =>
+    {
+        o.LoginPath = "/Home/Login";
+        o.ExpireTimeSpan = new System.TimeSpan(5,0,0,0);
+    });
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllersWithViews();
 
@@ -26,17 +31,16 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Relatorios/Error");
+    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
-
-app.UseTiaIdentity();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

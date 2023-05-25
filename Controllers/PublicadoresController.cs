@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using JWForm.Context;
@@ -5,6 +6,7 @@ using JWForm.Models;
 
 namespace JWForm.Controllers;
 
+[Authorize]
 public class PublicadoresController : Controller
 {
     private readonly Contexto db;

@@ -9,6 +9,4 @@ public class Contexto : DbContext
     public DbSet<Publicador> Publicadores { get; set; }
 
     public DbSet<Relatorio> Relatorios { get; set; }
-
-    public DbSet<Usuario> Usuarios { get; set; }
 }
