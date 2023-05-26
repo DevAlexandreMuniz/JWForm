@@ -34,6 +34,7 @@ public class RelatoriosController : Controller
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Criar(int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
         var mes = DateTime.Today.AddMonths(-1);

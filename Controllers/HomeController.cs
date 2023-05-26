@@ -41,6 +41,13 @@ public class HomeController : Controller
             CookieAuthenticationDefaults.AuthenticationScheme,
             claimPrincipal,
             authProperties);
+
+    }
+
+    public async Task<IActionResult> Sair()
+    {
+        await HttpContext.SignOutAsync();
+        return RedirectToAction("Login", "Home");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

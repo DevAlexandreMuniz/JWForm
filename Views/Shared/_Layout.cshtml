@@ -23,48 +23,78 @@
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
 
-					<ul class="navbar-nav" show-if='User.IsInRole(Perfis.OperadorLogistico)'>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-								aria-haspopup="true" aria-expanded="false">Publicadores
-                            </a>
-							<div class="dropdown-menu">
-
-                                <a class="dropdown-item" asp-controller="Publicadores" asp-action="Criar">
-                                    Cadastrar
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Publicadores
                                 </a>
+                                <div class="dropdown-menu">
 
-                                <a class="dropdown-item" asp-controller="Publicadores" asp-action="Listar">
-                                    Listar
+                                    <a class="dropdown-item" asp-controller="Publicadores" asp-action="Criar">
+                                        Cadastrar
+                                    </a>
+
+                                    <a class="dropdown-item" asp-controller="Publicadores" asp-action="Listar">
+                                        Listar
+                                    </a>
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Relatórios
                                 </a>
+                                <div class="dropdown-menu">
+                                    
+                                    <a class="dropdown-item" asp-controller="Relatorios" asp-action="Listar">
+                                        buscar Relatórios
+                                    </a>
+                                    
+                                    <a class="dropdown-item" asp-controller="Relatorios" asp-action="Criar">
+                                        Criar Relatórios
+                                    </a>
 
-							</div>
-						</li>
+                                    <a class="dropdown-item" asp-controller="Relatorios" asp-action="Resumo">
+                                        Resumo
+                                    </a>								
 
-						<li class="nav-item dropdown">
+                                </div>
 
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-								aria-haspopup="true" aria-expanded="false">Relatórios
-                            </a>
-							<div class="dropdown-menu">
-                                
-                                <a class="dropdown-item" asp-controller="Relatorios" asp-action="Listar">
-                                    buscar Relatórios
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav ms-md-auto">
+
+                            <li class="nav-item float-right">
+                                <a class='nav-link' href='#'>
+                                    <small>
+                                        Olá, @User.Identity.Name
+                                    </small>
                                 </a>
-                                
-                                <a class="dropdown-item" asp-controller="Relatorios" asp-action="Criar">
-                                    Criar Relatórios
+                            </li>
+
+                            <li class="nav-item float-right">
+                                <a class="nav-link" asp-controller="Home" asp-action="Sair">
+                                    <i class="fas fa-sign-out-alt"></i> Sair
                                 </a>
+                            </li>
+                        </ul>
+                    }
 
-                                <a class="dropdown-item" asp-controller="Relatorios" asp-action="Resumo">
-                                    Resumo
-                                </a>								
-
-							</div>
-
-						</li>
-					</ul>
-
+                    @if(!User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav ms-md-auto">
+                            <li class="nav-item float-right">
+                                <a class="nav-link" asp-controller="Home" asp-action="login">
+                                    <i class="fas fa-sign-out-alt"></i> Entrar
+                                </a>
+                            </li>
+                        </ul>
+                    }
 				</div>
             </div>
 
