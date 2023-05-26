@@ -1,6 +1,6 @@
 @model List<Relatorio>
 
-<div class="d-flex">
+<div class="d-flex mb-5">
     <h1 class="flex-grow-1">
         Relatórios de Serviço de Campo
     </h1>
@@ -9,58 +9,65 @@
 
 <form asp-action="Criar" asp-controller="Relatorios" method="post" enctype="multipart/form-data">
 
-    <h2 class="mt-5">
-        Publicador
-    </h2>
+    <div class="container">
 
+        <div class="row">
 
-    <div class="form-group mb-3">
-        Selecione seu nome 
-        <select class="form-select" name="publicador" 
-            asp-items='(SelectList) ViewData["listaDePublicadores"]'>
-            <option value="">Publicadores</option>
-        </select>
-    </div>
+            <div class="col-md-6 input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Publicador</label>
+                <select class="form-select" name="publicador" 
+                    asp-items='(SelectList) ViewData["listaDePublicadores"]'>
+                    <option value="">Escolha seu nome</option>
+                </select>
+            </div>
+            
+            <div class="Col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Mês</span>
+                <input type="text" class="form-control" placeholder="@ViewData["mes"]" disabled="" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
 
-    <h2 class="mt-5">
-        Relatório
-    </h2>
+        </div>
 
-    <p>Mês do relatório:<strong> @ViewData["mes"] </strong></p>
+        <div class="row">
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Publicações</span>
+                <input class="form-control" name="publicacoes" type="number" placeholder="Total de publicações">
+            </div>
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Vídeos</span>
+                <input class="form-control" name="videos" type="number" placeholder="Total de vídeos">
+            </div>
     
-    <div class="col form-group">
-        Publicações:
-        <input class="form-control" name="publicacoes" type="number">
-    </div>
+        </div>
 
-    <div class="form-group mb-3">
-        Videos:
-        <input class="form-control" name="videos" type="number">
-    </div>
+        <div class="row">
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Estudos</span>
+                <input class="form-control" name="estudosBiblicos" type="number" placeholder="Total de estudos">
+            </div>
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Revisitas</span>
+                <input class="form-control" name="revisitas" type="number" placeholder="Total de revisitas">
+            </div>
+        </div>
 
-    <div class="form-group mb-3">
-        Revisitas:
-        <input class="form-control" name="revisitas" type="number">
-    </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Horas</span>
+            <input class="form-control" name="horas" type="number" placeholder="Total de horas">
+        </div>
 
-    <div class="form-group mb-3">
-        Estudos Bíblicos:
-        <input class="form-control" name="estudosBiblicos" type="number">
-    </div>
+        <div class="form-group mb-3">
+            <label for="exampleTextarea" class="form-label mt-4">
+                Observações: 
+            </label>
+            <textarea class="form-control" name="observacao" rows="3" style="height: 99px;"></textarea>
+        </div>
 
-    <div class="form-group mb-3">
-        Horas:
-        <input class="form-control" name="horas" type="number">
-    </div>
-
-    <div class="form-group mb-3">
-        Observações: 
-        <input class="form-control" name="observacao" type="text">
-    </div>
-
-    <div class="d-grid gap-2 mt-3 mb-5">
-        <button type="submit" class="btn btn-primary btn-block"><em class="fas fa-arrow-right"></em>
+        <div class="d-grid gap-2 mt-3 mb-5">
+            <button type="submit" class="btn btn-primary btn-block"><em class="fas fa-arrow-right"></em>
             Enviar relatório</button>
-    </div>  
+        </div>
+
+    </div>
 
 </form>
