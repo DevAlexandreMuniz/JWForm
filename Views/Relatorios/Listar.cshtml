@@ -11,10 +11,10 @@
 <form class="row gx-3 gy-2 align-items-center" method='get'>
 
     <div class="col-sm-3">
-        <input class="form-select" name="mes" type="month">
+        <input class="form-select" name="mes" id="selectMes" type="month">
     </div>
     <div class="col-sm-3">
-        <select class="form-select" name="publicadorId" 
+        <select class="form-select" name="publicadorId" id="selectNome" 
             asp-items='(SelectList) ViewData["listaDePublicadores"]'>
             <option value="">Publicadores</option>
         </select>
@@ -57,3 +57,7 @@
         
     }
 </Div>
+
+@section scripts{
+    <script src="~/js/Relatorios/scripts.js" asp-append-version="true"></script>
+}

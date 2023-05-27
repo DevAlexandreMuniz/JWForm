@@ -11,7 +11,7 @@
 " asp-action="Resumo" asp-controller="Relatorios" method="post" enctype="multipart/form-data">
 
     <div class="col-sm-4">
-        <input class="form-select" name="mes" type="month">
+        <input class="form-select" name="mes" type="month" value="@ViewData["mes"]">
     </div>
     <div class="col-auto">
         <button class="btn btn-outline-primary" type="submit">

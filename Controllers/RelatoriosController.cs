@@ -76,6 +76,8 @@ public class RelatoriosController : Controller
     {
         var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
 
+        ViewData["mes"] = DateTime.Today.ToString("MMMM-yyyy");
+
         viewModel.totalDeHorasPublicadoresNaoBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado && w.Mes == mes).Sum(s => s.Horas);
 
         viewModel.totalDeHorasPublicadoresBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.Batizado && w.Mes == mes).Sum(s => s.Horas);
