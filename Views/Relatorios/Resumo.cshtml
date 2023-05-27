@@ -7,11 +7,13 @@
 </div>
 
 <hr>
-<form asp-action="Resumo" asp-controller="Relatorios" method="post" enctype="multipart/form-data">
-    <label for="birthday">Escolha o mês:</label>
-    <input type="month" name="mes">
+<form class="row gx-3 gy-2 align-items-center mb-3
+" asp-action="Resumo" asp-controller="Relatorios" method="post" enctype="multipart/form-data">
 
-    <div class=" mt-3 mb-5">
+    <div class="col-sm-4">
+        <input class="form-select" name="mes" type="month">
+    </div>
+    <div class="col-auto">
         <button class="btn btn-outline-primary" type="submit">
             <em class="fas fa-search"></em> Analizar
         </button>

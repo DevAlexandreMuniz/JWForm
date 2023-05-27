@@ -9,28 +9,29 @@
 
 <form asp-action="Criar" asp-controller="Publicadores" method="post" enctype="multipart/form-data">
 
-    <div class="form-group mb-3">
-        Nome
-        <input class="form-control" name="nome" type="text">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nome</span>
+        <input type="text" class="form-control" name="nome" placeholder="Nome do publicador" >
     </div>
 
-    <div class="form-group mb-3">
-        Grupo de Campo
-        <select class="form-select" name="grupoDeCampo">
-            <option value="">Selecione um Grupo</option>
-            <option value="Grupo do Alexandre">Grupo do Alexandre</option>
-            <option value="Grupo do Tiago">Grupo do Tiago</option>
-        </select>
-    </div>
-
-    <div class="form-group mb-3">
-        Você é :
-        <select class="form-select" name="tipo">
-            <option value="0">Publicador não batizado</option>
-            <option value="1">Publicador batizado</option>
-            <option value="2">Pioneiro Auxiliar</option>
-            <option value="3">Pioneiro Regular</option>
-        </select>
+    <div class="row">
+        <div class="col-md-6 input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Publicador</label>
+            <select class="form-select" name="grupoDeCampo">
+                <option value="">Selecione um Grupo</option>
+                <option value="Grupo do Alexandre">Grupo do Alexandre</option>
+                <option value="Grupo do Tiago">Grupo do Tiago</option>
+            </select>
+        </div>
+        <div class="col-md-6 input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Situação</label>
+            <select class="form-select" name="tipo">
+                <option value="0">Publicador não batizado</option>
+                <option value="1">Publicador batizado</option>
+                <option value="2">Pioneiro Auxiliar</option>
+                <option value="3">Pioneiro Regular</option>
+            </select>
+        </div>
     </div>
 
     <div class="d-grid gap-2 mt-3 mb-5">
