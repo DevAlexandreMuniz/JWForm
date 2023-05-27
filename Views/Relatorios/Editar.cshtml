@@ -5,68 +5,71 @@
         Editar Relatorio
     </h1>
 </div>
-
 <hr>
 
 <form asp-action="Editar" method="post">
 
     <input hidden asp-for="RelatorioId" />
 
-    <h2 class="mt-5">
-        Publicador
-    </h2>
+    <div class="container">
 
+        <div class="row">
 
-    <div class="form-group mb-3">
-        Selecione o nome do Publicador
-        <select class="form-select" name="publicador" 
-            asp-items='(SelectList) ViewData["listaDePublicadores"]'>
-            <option value="">Publicadores</option>
-        </select>
-    </div>
+            <div class="col-md-6 input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Publicador</label>
+                <select class="form-select" name="publicador" 
+                    asp-items='(SelectList) ViewData["listaDePublicadores"]'>
+                    <option value="">Escolha seu nome</option>
+                </select>
+            </div>
+            
+            <div class="Col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Mês</span>
+                <input class="form-control" name="mes" type="month">
+            </div>
 
-    <h2 class="mt-5">
-        Relatório
-    </h2>
+        </div>
 
-
-    Selecione o Mês:
-    <input class="form-control" name="mes" type="month">
-
+        <div class="row">
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Publicações</span>
+                <input class="form-control" name="publicacoes" type="number" placeholder="Total de publicações">
+            </div>
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Vídeos</span>
+                <input class="form-control" name="videos" type="number" placeholder="Total de vídeos">
+            </div>
     
-    <div class="col form-group">
-        Publicações:
-        <input class="form-control" name="publicacoes" type="number">
-    </div>
+        </div>
 
-    <div class="form-group mb-3">
-        Videos:
-        <input class="form-control" name="videos" type="number">
-    </div>
+        <div class="row">
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Estudos</span>
+                <input class="form-control" name="estudosBiblicos" type="number" placeholder="Total de estudos">
+            </div>
+            <div class="col-md-6 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Revisitas</span>
+                <input class="form-control" name="revisitas" type="number" placeholder="Total de revisitas">
+            </div>
+        </div>
 
-    <div class="form-group mb-3">
-        Revisitas:
-        <input class="form-control" name="revisitas" type="number">
-    </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Horas</span>
+            <input class="form-control" name="horas" type="number" placeholder="Total de horas">
+        </div>
 
-    <div class="form-group mb-3">
-        Estudos Bíblicos:
-        <input class="form-control" name="estudosBiblicos" type="number">
-    </div>
+        <div class="form-group mb-3">
+            <label for="exampleTextarea" class="form-label mt-4">
+                Observações: 
+            </label>
+            <textarea class="form-control" name="observacao" rows="3" style="height: 99px;"></textarea>
+        </div>
 
-    <div class="form-group mb-3">
-        Horas:
-        <input class="form-control" name="horas" type="number">
-    </div>
+        <div class="d-grid gap-2 mt-3 mb-5">
+            <button type="submit" class="btn btn-primary"> Salvar</button>
+            <a asp-action="listar" class="btn btn-secondary"> Cancelar</a>
+        </div>
 
-    <div class="form-group mb-3">
-        Observações: 
-        <input class="form-control" name="observacao" type="text">
-    </div>
-
-    <div class="form-group mt-5">
-        <a asp-action="listar" class="btn btn-light"> Cancelar</a>
-        <button type="submit" class="btn btn-primary"> Salvar</button>
     </div>
 
 </form>
