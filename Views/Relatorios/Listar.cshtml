@@ -8,7 +8,7 @@
 
 <hr>
 
-<form class="row gx-3 gy-2 align-items-center" method='get'>
+<form class="row gx-3 gy-2 align-items-center mb-5" method='get'>
 
     <div class="col-sm-3">
         <input class="form-select" name="mes" id="selectMes" type="month">
@@ -20,7 +20,7 @@
         </select>
     </div>
     <div class="col-auto">
-        <button class="btn btn-outline-secondary" type="button" id='btnLimpar'>
+        <button class="btn btn-secondary" type="button" id='btnLimpar'>
             <i class="fas fa-redo"></i> Limpar
         </button>
     </div>
@@ -32,14 +32,13 @@
   
 </form>
 
-<div class="row">
+<div class="row align-items-center">
     @foreach (var relatorio in Model)
     {
         
         <div class="col-sm-4">
-            <a class="list-group-item list-group-item-action d-flex card" style="width: 18rem;" asp-action="Editar" asp-route-id="@relatorio.RelatorioId">
+            <div class="list-group-item list-group-item-action d-flex card mb-5" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Relatório de </h5>
                     <h6 class="card-subtitle mb-2 text-muted">@relatorio.Publicador.Nome</h6>
                     <h6 class="card-subtitle mb-2 text-muted">@relatorio.Publicador.Tipo</h6>
                 </div>
@@ -51,8 +50,11 @@
                     <li class="list-group-item">Estudos: @relatorio.EstudosBiblicos</li>
                     <li class="list-group-item">Horas: @relatorio.Horas</li>
                     <li class="list-group-item">Observações : @relatorio.Observacao</li>
+                    <li class="list-group-item">
+                        <a asp-action="Editar" asp-route-id="@relatorio.RelatorioId" class="card-link">Editar relatório</a>
+                    </li>
                 </ul>     
-            </a>
+            </div>
         </div>
         
     }

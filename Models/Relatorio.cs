@@ -51,7 +51,7 @@ public class Relatorio
     [Display(Name = "Horas")]
     public int Horas { get; set; }
 
-    [StringLength(50, ErrorMessage = "O tamanho máximo é 100 caracteres")]
+    [StringLength(200, ErrorMessage = "O tamanho máximo é 200 caracteres")]
     [Display(Name = "Observação")]
     public string Observacao { get; set; }
 
