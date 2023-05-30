@@ -37,9 +37,9 @@ public class RelatoriosController : Controller
     [AllowAnonymous]
     public async Task<IActionResult> Criar(int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
-        var mes = DateTime.Today.AddMonths(-1);
+        var data = DateTime.Today.AddMonths(-1);
    
-        var relatorios = new Relatorio(mes, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
+        var relatorios = new Relatorio(data, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
         await db.Relatorios.AddAsync(relatorios);
         await db.SaveChangesAsync();
@@ -59,12 +59,12 @@ public class RelatoriosController : Controller
     }
 
      [HttpPost]
-    public async Task<IActionResult> Editar(int relatorioId, DateTime mes, int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
+    public async Task<IActionResult> Editar(int relatorioId, DateTime data, int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
 
         var relatorio = await db.Relatorios.Include(i => i.Publicador).SingleOrDefaultAsync(a => a.RelatorioId == relatorioId);
 
-        relatorio.Atualizar(mes, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
+        relatorio.Atualizar(data, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
         db.Update(relatorio);
         await db.SaveChangesAsync();
@@ -72,30 +72,30 @@ public class RelatoriosController : Controller
         return View("_enviadoComSucesso");
     }
 
-    public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime mes)
+    public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime data)
     {
-        var relatorios = await db.Relatorios.Include(i => i.Publicador).ToListAsync();
-
         ViewData["mes"] = DateTime.Today.ToString("MMMM-yyyy");
 
-        viewModel.totalDeHorasPublicadoresNaoBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado && w.Mes == mes).Sum(s => s.Horas);
+        viewModel.totalDeHorasPublicadoresNaoBatizados = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPublicadoresBatizados = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.Batizado && w.Mes == mes).Sum(s => s.Horas);
+        viewModel.totalDeHorasPublicadoresBatizados = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.Batizado && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneirosAuxiliares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar && w.Mes == mes).Sum(s => s.Horas);
+        viewModel.totalDeHorasPioneirosAuxiliares = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneirosRegulares = relatorios.Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular && w.Mes == mes).Sum(s => s.Horas);
+        viewModel.totalDeHorasPioneirosRegulares = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
 
-        viewModel.totalDeHoras = relatorios.Where(w => w.Mes == mes).Sum(s => s.Horas);
+        viewModel.totalDeHoras = db.Relatorios.Include(i => i.Publicador).Where(w => w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
+
+        viewModel.totalDePublicadoresPendentes = db.Publicadores.Count(c => c.Relatorios.Any(a => a.Data.Month != data.Month && a.Data.Year != data.Year));
 
         return View(viewModel);
     }
 
-    public async Task<IActionResult> Listar(int publicadorId, DateTime mes)
+    public async Task<IActionResult> Listar(int publicadorId, DateTime data)
     {
         var relatorios = await db.Relatorios
             .Include(i => i.Publicador)
-            .Where(w => w.Publicador.PublicadorId == publicadorId && w.Mes.Month == mes.Month)
+            .Where(w => w.Publicador.PublicadorId == publicadorId && w.Data.Month == data.Month)
             .ToListAsync();
 
         var publicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();

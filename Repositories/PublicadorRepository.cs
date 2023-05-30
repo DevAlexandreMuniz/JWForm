@@ -15,8 +15,6 @@ public class PublicadorRepository : IPublicadorRepository
 
     public IEnumerable<Publicador> Publicadores => _context.Publicadores;
 
-    public IEnumerable<Publicador> PublicadoresPendentes => _context.Publicadores.Where(w => !w.EnviouORelatorio);
-
     public Publicador EncontrarPublicador(int publicadorId)
     {
         return _context.Publicadores.FirstOrDefault(f => f.PublicadorId == publicadorId);

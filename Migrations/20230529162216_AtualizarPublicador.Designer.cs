@@ -4,6 +4,7 @@ using JWForm.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JWForm.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20230529162216_AtualizarPublicador")]
+    partial class AtualizarPublicador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,15 +59,15 @@ namespace JWForm.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RelatorioId"));
 
-                    b.Property<DateTime>("Data")
-                        .HasMaxLength(50)
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("EstudosBiblicos")
                         .HasColumnType("int");
 
                     b.Property<int>("Horas")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Mes")
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Observacao")
                         .IsRequired()

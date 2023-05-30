@@ -31,8 +31,6 @@ public class Publicador
     public string GrupoDeCampo { get; set; }
 
     public TipoPublicador Tipo { get; set; }
-    
-    public bool EnviouORelatorio { get; set; }
 
-    public List<Relatorio> Relatorios { get; set; }
+    public List<Relatorio> Relatorios { get; set; } =  new List<Relatorio>();
 }

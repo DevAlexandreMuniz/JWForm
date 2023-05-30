@@ -53,6 +53,15 @@ public class PublicadoresController : Controller
         return View("_cadastradoComSucesso");
     }
 
+    public async Task<IActionResult> Pendentes()
+    {
+        var data = DateTime.Today.AddMonths(-1);
+
+        var publicadoresPendentes = await db.Publicadores.Where(w => w.Relatorios.Any(a => a.Data.Month != data.Month && a.Data.Year != data.Year)).ToListAsync();
+
+        return View(publicadoresPendentes);
+    }
+
     public async Task<IActionResult> Listar()
     {
         var publicadores = await db.Publicadores.ToListAsync();

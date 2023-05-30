@@ -11,7 +11,7 @@
 <form class="row gx-3 gy-2 align-items-center mb-5" method='get'>
 
     <div class="col-sm-3">
-        <input class="form-select" name="mes" id="selectMes" type="month">
+        <input class="form-select" name="data" id="selectMes" type="month">
     </div>
     <div class="col-sm-3">
         <select class="form-select" name="publicadorId" id="selectNome" 
@@ -43,7 +43,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">@relatorio.Publicador.Tipo</h6>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Data: @relatorio.Mes.ToString("MM-yyyy")</strong></li>
+                    <li class="list-group-item"><strong>Data: @relatorio.Data.ToString("MM-yyyy")</strong></li>
                     <li class="list-group-item">Publicações: @relatorio.Publicacoes</li>
                     <li class="list-group-item">Vídeos: @relatorio.Videos</li>
                     <li class="list-group-item">Revisitas: @relatorio.Revisitas</li>
