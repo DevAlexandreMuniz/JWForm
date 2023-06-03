@@ -26,7 +26,7 @@ public class RelatoriosController : Controller
 
         ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");  
 
-        ViewData["Mes"] = DateTime.Today.AddMonths(-1).ToString("MMMM-yyyy");
+        ViewData["Mes"] = DateTime.Today.AddMonths(-1).ToString("yyyy-MM");
 
         var relatorios = await db.Relatorios.ToListAsync();
 
@@ -74,25 +74,47 @@ public class RelatoriosController : Controller
 
     public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime data)
     {
-        ViewData["mes"] = DateTime.Today.ToString("MMMM-yyyy");
+        if(data == DateTime.MinValue)
+            data = DateTime.Today.AddMonths(-1);
 
-        viewModel.totalDeHorasPublicadoresNaoBatizados = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
+        ViewData["mes"] = data.ToString("yyyy-MM");
 
-        viewModel.totalDeHorasPublicadoresBatizados = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.Batizado && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
+        viewModel.totalDeHorasPublicadoresNaoBatizados = db.Relatorios
+            .Include(i => i.Publicador)
+            .Where(w => w.Publicador.Tipo == TipoPublicador.NaoBatizado && w.Data.Month == data.Month && w.Data.Year == data.Year)
+            .Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneirosAuxiliares = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
+        viewModel.totalDeHorasPublicadoresBatizados = db.Relatorios
+            .Include(i => i.Publicador)
+            .Where(w => w.Publicador.Tipo == TipoPublicador.Batizado && w.Data.Month == data.Month && w.Data.Year == data.Year)
+            .Sum(s => s.Horas);
 
-        viewModel.totalDeHorasPioneirosRegulares = db.Relatorios.Include(i => i.Publicador).Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular && w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
+        viewModel.totalDeHorasPioneirosAuxiliares = db.Relatorios
+            .Include(i => i.Publicador)
+            .Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroAuxiliar && w.Data.Month == data.Month && w.Data.Year == data.Year)
+            .Sum(s => s.Horas);
 
-        viewModel.totalDeHoras = db.Relatorios.Include(i => i.Publicador).Where(w => w.Data.Month == data.Month && w.Data.Year != data.Year).Sum(s => s.Horas);
+        viewModel.totalDeHorasPioneirosRegulares = db.Relatorios
+            .Include(i => i.Publicador)
+            .Where(w => w.Publicador.Tipo == TipoPublicador.PioneiroRegular && w.Data.Month == data.Month && w.Data.Year == data.Year)
+            .Sum(s => s.Horas);
 
-        viewModel.totalDePublicadoresPendentes = db.Publicadores.Count(c => c.Relatorios.Any(a => a.Data.Month != data.Month && a.Data.Year != data.Year));
+        viewModel.totalDeHoras = db.Relatorios
+            .Include(i => i.Publicador)
+            .Where(w => w.Data.Month == data.Month && w.Data.Year == data.Year)
+            .Sum(s => s.Horas);
+
+        viewModel.totalDePublicadoresPendentes = db.Publicadores
+            .Count(c => !c.Relatorios
+            .Any(a => a.Data.Month == data.Month && a.Data.Year == data.Year));
 
         return View(viewModel);
     }
 
     public async Task<IActionResult> Listar(int publicadorId, DateTime data)
     {
+        ViewData["mes"] = DateTime.Today.ToString("yyyy-MM");
+
         var relatorios = await db.Relatorios
             .Include(i => i.Publicador)
             .Where(w => w.Publicador.PublicadorId == publicadorId && w.Data.Month == data.Month)

@@ -8,6 +8,20 @@
 
 <hr>
 
+<form class="row gx-3 gy-2 align-items-center mb-3
+" asp-action="Pendentes" asp-controller="Publicadores" method="post" enctype="multipart/form-data">
+
+    <div class="col-sm-4">
+        <input class="form-select" name="data" type="month" value="@ViewData["mes"]">
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-outline-primary" type="submit">
+            <em class="fas fa-search"></em> Analizar
+        </button>
+    </div>
+    
+</form>
+
 <div class="list-group">
     @foreach (var item in Model)
     {

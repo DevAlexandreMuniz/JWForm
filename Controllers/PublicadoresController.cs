@@ -53,11 +53,17 @@ public class PublicadoresController : Controller
         return View("_cadastradoComSucesso");
     }
 
-    public async Task<IActionResult> Pendentes()
+    public async Task<IActionResult> Pendentes(DateTime data)
     {
-        var data = DateTime.Today.AddMonths(-1);
+        if(data == DateTime.MinValue)
+            data = DateTime.Today.AddMonths(-1);
 
-        var publicadoresPendentes = await db.Publicadores.Where(w => w.Relatorios.Any(a => a.Data.Month != data.Month && a.Data.Year != data.Year)).ToListAsync();
+        ViewData["mes"] = data.ToString("yyyy-MM");
+
+        var publicadoresPendentes = await db.Publicadores
+            .Where(w => !w.Relatorios
+            .Any(a => a.Data.Month == data.Month && a.Data.Year == data.Year))
+            .ToListAsync();
 
         return View(publicadoresPendentes);
     }
