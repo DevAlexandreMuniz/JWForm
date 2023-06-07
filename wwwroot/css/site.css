@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.list-group-item {
+  color: #343a40;
+}
+
+.list-group-item:hover {
+  color: #868e96;
+}
