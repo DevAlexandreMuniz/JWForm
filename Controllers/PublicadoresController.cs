@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using JWForm.Context;
 using JWForm.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JWForm.Controllers;
 
@@ -68,9 +69,15 @@ public class PublicadoresController : Controller
         return View(publicadoresPendentes);
     }
 
-    public async Task<IActionResult> Listar()
+    public async Task<IActionResult> Listar(string grupoDeCampo)
     {
-        var publicadores = await db.Publicadores.ToListAsync();
+        var publicadores = await db.Publicadores
+            .Where(w =>w.GrupoDeCampo == grupoDeCampo)
+            .ToListAsync();
+
+        var listaPublicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
+            
+        ViewData["ListaDePublicadores"] = new SelectList(listaPublicadores, "PublicadorId", "Nome");
         return View(publicadores);
     }
 }   

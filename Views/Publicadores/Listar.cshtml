@@ -8,6 +8,23 @@
 
 <hr>
 
+<form class="row gx-3 gy-2 align-items-center mb-5" method='get'>
+    <div class="col-md-6 input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Publicador</label>
+        <select class="form-select" name="grupoDeCampo">
+            <option value="">Selecione um Grupo</option>
+            <option value="Grupo do Alexandre">Grupo do Alexandre</option>
+            <option value="Grupo do Tiago">Grupo do Tiago</option>
+        </select>
+    </div>
+    <div class="col-auto">       
+        <button class="btn btn-primary" type="submit">
+            <em class="fas fa-search"></em> Buscar
+        </button>
+  </div>
+  
+</form>
+
 <div class="list-group">
     @foreach (var item in Model)
     {
