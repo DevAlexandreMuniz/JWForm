@@ -71,11 +71,13 @@ public class PublicadoresController : Controller
 
     public async Task<IActionResult> Listar(string grupoDeCampo)
     {
-        var publicadores = await db.Publicadores
-            .Where(w =>w.GrupoDeCampo == grupoDeCampo)
+        var listaPublicadores = await db.Publicadores
+            .AsNoTracking()
+            .OrderBy(a => a.Nome)
             .ToListAsync();
 
-        var listaPublicadores = await db.Publicadores.AsNoTracking().OrderBy(a => a.Nome).ToListAsync();
+        var publicadores = listaPublicadores
+            .Where(w =>w.GrupoDeCampo == grupoDeCampo);        
             
         ViewData["ListaDePublicadores"] = new SelectList(listaPublicadores, "PublicadorId", "Nome");
         return View(publicadores);
