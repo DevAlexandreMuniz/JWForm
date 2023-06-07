@@ -77,7 +77,8 @@ public class PublicadoresController : Controller
             .ToListAsync();
 
         var publicadores = listaPublicadores
-            .Where(w =>w.GrupoDeCampo == grupoDeCampo);        
+            .Where(w =>w.GrupoDeCampo == grupoDeCampo)
+            .ToList();        
             
         ViewData["ListaDePublicadores"] = new SelectList(listaPublicadores, "PublicadorId", "Nome");
         return View(publicadores);
