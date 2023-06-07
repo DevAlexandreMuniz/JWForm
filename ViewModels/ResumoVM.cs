@@ -15,5 +15,6 @@ public class ResumoVM
     public int totalDeHoras {get; set; }
 
     public int totalDePublicadoresPendentes {get; set; }
-    
+
+    public int totalDePublicadoresInativos {get; set; }
 }
