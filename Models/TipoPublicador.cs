@@ -1,7 +1,16 @@
+using System.ComponentModel;
+
 public enum TipoPublicador
 {
-NaoBatizado,
-Batizado,
-PioneiroAuxiliar,
-PioneiroRegular
+    [Description("Não Batizado")]
+    NaoBatizado,
+
+    [Description("Batizado")]
+    Batizado,
+
+    [Description("Pionerio Auxiliar")]
+    PioneiroAuxiliar,
+    
+    [Description("Pioneiro Regular")]
+    PioneiroRegular
 }

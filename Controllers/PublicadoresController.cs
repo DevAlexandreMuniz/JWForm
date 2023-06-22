@@ -63,10 +63,22 @@ public class PublicadoresController : Controller
 
         var publicadoresPendentes = await db.Publicadores
             .Where(w => !w.Relatorios
-            .Any(a => a.Data.Month == data.Month && a.Data.Year == data.Year))
-            .ToListAsync();
+                .Any(a => a.Data.Month == data.Month && a.Data.Year == data.Year))
+                .ToListAsync();
 
         return View(publicadoresPendentes);
+    }
+
+    public async Task<IActionResult> Inativos()
+    {
+        var quatroMesesAtras = DateTime.Today.AddMonths(-4);
+
+        var publicadoresInativos = await db.Publicadores
+            .Where(w => !w.Relatorios
+                .Any(a => a.Data >= quatroMesesAtras))
+                .ToListAsync();
+
+        return View(publicadoresInativos);
     }
 
     public async Task<IActionResult> Listar(string grupoDeCampo)

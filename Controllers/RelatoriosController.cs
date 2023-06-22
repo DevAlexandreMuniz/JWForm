@@ -108,13 +108,11 @@ public class RelatoriosController : Controller
             .Count(c => !c.Relatorios
                 .Any(a => a.Data.Month == data.Month && a.Data.Year == data.Year));
 
+        var quatroMesesAtras = DateTime.Today.AddMonths(-4);
+
         viewModel.totalDePublicadoresInativos = db.Publicadores
             .Count(c => !c.Relatorios
-                .Any(a => a.Data.Month == DateTime.Today.Month && a.Data.Year == DateTime.Today.Year &&
-                            a.Data.Month == DateTime.Today.AddMonths(-1).Month && a.Data.Year == DateTime.Today.AddMonths(-1).Year &&
-                            a.Data.Month == DateTime.Today.AddMonths(-2).Month && a.Data.Year == DateTime.Today.AddMonths(-2).Year && 
-                            a.Data.Month == DateTime.Today.AddMonths(-3).Month && a.Data.Year == DateTime.Today.AddMonths(-3).Year &&
-                            a.Data.Month == DateTime.Today.AddMonths(-4).Month && a.Data.Year == DateTime.Today.AddMonths(-4).Year));        
+                .Any(a => a.Data.Month >= quatroMesesAtras.Month && a.Data.Year >= quatroMesesAtras.Year));        
 
         return View(viewModel);
     }
