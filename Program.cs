@@ -22,7 +22,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Contexto>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("db")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
 builder.Services.AddTransient<IPublicadorRepository, PublicadorRepository>();
 builder.Services.AddTransient<IRelatorioRepository, RelatorioRepository>();
