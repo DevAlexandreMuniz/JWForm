@@ -6,6 +6,8 @@ using JWForm.ViewModels;
 using JWForm.Context;
 using JWForm.Models;
 using System.Diagnostics;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace JWForm.Controllers;
 
@@ -37,7 +39,7 @@ public class RelatoriosController : Controller
     [AllowAnonymous]
     public async Task<IActionResult> Criar(int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
-        var data = DateTime.Today.AddMonths(-1);
+        var data = DateTime.Today.AddMonths(-1).ToUniversalTime();
    
         var relatorios = new Relatorio(data, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
@@ -131,5 +133,16 @@ public class RelatoriosController : Controller
         ViewData["ListaDePublicadores"] = new SelectList(publicadores, "PublicadorId", "Nome");
 
         return View(relatorios);
+    }
+
+    public static string GetEnumDescription(Enum value)
+    {
+        FieldInfo fi = value.GetType().GetField(value.ToString());
+        DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+        if (attributes.Length > 0)
+            return attributes[0].Description;
+        else
+            return value.ToString();
     }
 }
