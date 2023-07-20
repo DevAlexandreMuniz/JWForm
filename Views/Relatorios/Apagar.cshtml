@@ -1,0 +1,32 @@
+@model JWForm.Models.Relatorio;
+
+<div class="d-flex mb-5">
+    <h1 class="flex-grow-1">
+        Apagar Relatório
+    </h1>
+</div>
+<hr>
+
+<h3>Tem certeza de que deseja apagar este relatório?</h3>
+
+<div class="col-sm-4">
+    <div class="list-group-item list-group-item-action d-flex card mb-5" style="width: 18rem;">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">Model.Publicador.Nome</h6>
+            <h6 class="card-subtitle mb-2 text-muted">@JWForm.Controllers.RelatoriosController.GetEnumDescription(Model.Publicador.Tipo)</h6>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center"><strong>Data: model.Data.ToString("MM-yyyy")</strong></li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Publicações: model.Publicacoes</li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Vídeos: model.Videos</li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Revisitas: model.Revisitas</li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Estudos: model.EstudosBiblicos</li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Horas: model.Horas</li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Observações : model.Observacao</li>
+        </ul>     
+    </div>
+</div>
+<form asp-action="Delete" class="form-group mt-5">
+    <button type="submit" class="btn btn-primary"> Apagar</button>
+    <a asp-action="listar" class="btn btn-light"> Cancelar</a>
+</form>

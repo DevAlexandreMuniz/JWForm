@@ -60,11 +60,13 @@ public class RelatoriosController : Controller
         return View(relatorio);
     }
 
-     [HttpPost]
+    [HttpPost]
     public async Task<IActionResult> Editar(int relatorioId, DateTime data, int publicador, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao)
     {
 
-        var relatorio = await db.Relatorios.Include(i => i.Publicador).SingleOrDefaultAsync(a => a.RelatorioId == relatorioId);
+        var relatorio = await db.Relatorios
+            .Include(i => i.Publicador)
+            .SingleOrDefaultAsync(a => a.RelatorioId == relatorioId);
 
         relatorio.Atualizar(data, videos, publicacoes, revisitas, estudosBiblicos, horas, observacao, publicador);
 
@@ -72,6 +74,24 @@ public class RelatoriosController : Controller
         await db.SaveChangesAsync();
 
         return View("_enviadoComSucesso");
+    }
+
+    public async Task<IActionResult> Apagar(int relatorioId)
+    {
+        if (relatorioId == null)
+        {
+            return NotFound();
+        }
+
+        var relatorio = await db.Relatorios
+            .Include(i => i.Publicador)
+            .SingleOrDefaultAsync(a => a.RelatorioId == relatorioId);
+        if (relatorio == null)
+        {
+            return NotFound();
+        }
+
+        return View(relatorio);
     }
 
     public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime data)
@@ -134,6 +154,8 @@ public class RelatoriosController : Controller
 
         return View(relatorios);
     }
+
+
 
     public static string GetEnumDescription(Enum value)
     {
