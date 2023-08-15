@@ -1,0 +1,16 @@
+@model Publicador;
+
+<div class="d-flex mb-5">
+    <h1 class="flex-grow-1">
+        Apagar Publicador
+    </h1>
+</div>
+<hr>
+
+<h3>Tem certeza de que deseja apagar o publicador @Model.Nome?</h3>
+
+<form asp-controller="Publicadores" asp-action="ConfirmarParaApagar" method="post" class="form-group mt-5">
+    <input type="hidden" asp-for="PublicadorId"/>
+    <button class="btn btn-primary"> Apagar</button>
+    <a asp-action="listar" class="btn btn-light"> Cancelar</a>
+</form>

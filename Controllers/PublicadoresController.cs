@@ -95,4 +95,27 @@ public class PublicadoresController : Controller
         ViewData["ListaDePublicadores"] = new SelectList(listaPublicadores, "PublicadorId", "Nome");
         return View(publicadores);
     }
+
+    public async Task<IActionResult> Apagar(int publicadorId)
+    {
+        var publicador = await db.Publicadores
+            .SingleOrDefaultAsync(a => a.PublicadorId == publicadorId);
+
+        if (publicador == null)
+            return NotFound();
+
+        return View(publicador);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ConfirmarParaApagar(Publicador publicador)
+    {
+        if (publicador is null)
+            throw new ArgumentNullException(nameof(publicador));
+
+        db.Publicadores.Remove(publicador);
+        await db.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Listar));
+    }
 }   

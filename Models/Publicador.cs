@@ -4,6 +4,10 @@ namespace JWForm.Models;
 
 public class Publicador
 {
+    public Publicador()
+    {
+    }
+    
     public Publicador(string nome, string grupoDeCampo, TipoPublicador tipo)
     {
         Nome = nome;

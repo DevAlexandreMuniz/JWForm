@@ -4,6 +4,10 @@
     <h1 class="flex-grow-1">
         Editar Publicador
     </h1>
+    <form asp-action="Apagar">
+        <input hidden asp-for="PublicadorId" />
+        <input type="submit" value="Apagar" class="btn btn-danger" />
+    </form>
 </div>
 <hr>
 
