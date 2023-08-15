@@ -78,20 +78,27 @@ public class RelatoriosController : Controller
 
     public async Task<IActionResult> Apagar(int relatorioId)
     {
-        if (relatorioId == null)
-        {
-            return NotFound();
-        }
 
         var relatorio = await db.Relatorios
             .Include(i => i.Publicador)
             .SingleOrDefaultAsync(a => a.RelatorioId == relatorioId);
+
         if (relatorio == null)
-        {
             return NotFound();
-        }
 
         return View(relatorio);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ConfirmarParaApagar(Relatorio relatorio)
+    {
+        if (relatorio is null)
+            throw new ArgumentNullException(nameof(relatorio));
+
+        db.Relatorios.Remove(relatorio);
+        await db.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Listar));
     }
 
     public async Task<IActionResult> Resumo(ResumoVM viewModel, DateTime data)

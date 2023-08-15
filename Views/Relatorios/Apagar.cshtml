@@ -1,4 +1,4 @@
-@model JWForm.Models.Relatorio;
+@model Relatorio;
 
 <div class="d-flex mb-5">
     <h1 class="flex-grow-1">
@@ -12,21 +12,39 @@
 <div class="col-sm-4">
     <div class="list-group-item list-group-item-action d-flex card mb-5" style="width: 18rem;">
         <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">Model.Publicador.Nome</h6>
-            <h6 class="card-subtitle mb-2 text-muted">@JWForm.Controllers.RelatoriosController.GetEnumDescription(Model.Publicador.Tipo)</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @Model.Publicador.Nome
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+                @JWForm.Controllers.RelatoriosController.GetEnumDescription(@Model.Publicador.Tipo)
+            </h6>
         </div>
         <ul class="list-group">
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center"><strong>Data: model.Data.ToString("MM-yyyy")</strong></li>
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Publicações: model.Publicacoes</li>
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Vídeos: model.Videos</li>
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Revisitas: model.Revisitas</li>
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Estudos: model.EstudosBiblicos</li>
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Horas: model.Horas</li>
-            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Observações : model.Observacao</li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                <strong>Data: @Model.Data.ToString("MM-yyyy")</strong>
+            </li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                Publicações: @Model.Publicacoes
+            </li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                Vídeos: @Model.Videos
+            </li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                Revisitas: @Model.Revisitas
+            </li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                Estudos: @Model.EstudosBiblicos
+            </li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                Horas: @Model.Horas
+            </li>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                Observações : @Model.Observacao
+            </li>
         </ul>     
     </div>
 </div>
-<form asp-action="Apagar" class="form-group mt-5">
-    <button type="submit" class="btn btn-primary"> Apagar</button>
+<form asp-controller="Relatorios" asp-action="ConfirmarParaApagar" method="post" class="form-group mt-5">
+    <button class="btn btn-primary"> Apagar</button>
     <a asp-action="listar" class="btn btn-light"> Cancelar</a>
 </form>

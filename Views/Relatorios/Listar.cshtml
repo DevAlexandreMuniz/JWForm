@@ -38,17 +38,35 @@
     <div class="col-sm-4">
         <div class="list-group-item list-group-item-action d-flex card mb-5" style="width: 18rem;">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">@relatorio.Publicador.Nome</h6>
-                <h6 class="card-subtitle mb-2 text-muted">@JWForm.Controllers.RelatoriosController.GetEnumDescription(relatorio.Publicador.Tipo)</h6>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    @relatorio.Publicador.Nome
+                </h6>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    @JWForm.Controllers.RelatoriosController.GetEnumDescription(relatorio.Publicador.Tipo)
+                </h6>
             </div>
             <ul class="list-group">
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center"><strong>Data: @relatorio.Data.ToString("MM-yyyy")</strong></li>
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Publicações: @relatorio.Publicacoes</li>
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Vídeos: @relatorio.Videos</li>
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Revisitas: @relatorio.Revisitas</li>
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Estudos: @relatorio.EstudosBiblicos</li>
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Horas: @relatorio.Horas</li>
-                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">Observações : @relatorio.Observacao</li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    <strong>Data: @relatorio.Data.ToString("MM-yyyy")</strong>
+                </li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    Publicações: @relatorio.Publicacoes
+                </li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    Vídeos: @relatorio.Videos
+                </li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    Revisitas: @relatorio.Revisitas
+                </li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    Estudos: @relatorio.EstudosBiblicos
+                </li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    Horas: @relatorio.Horas
+                </li>
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                    Observações : @relatorio.Observacao
+                </li>
                 <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
                     <a asp-action="Editar" asp-route-id="@relatorio.RelatorioId" class="card-link">Editar relatório</a>
                 </li>
