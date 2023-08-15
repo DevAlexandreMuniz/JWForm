@@ -45,6 +45,7 @@
     </div>
 </div>
 <form asp-controller="Relatorios" asp-action="ConfirmarParaApagar" method="post" class="form-group mt-5">
+    <input type="hidden" asp-for="RelatorioId"/>
     <button class="btn btn-primary"> Apagar</button>
     <a asp-action="listar" class="btn btn-light"> Cancelar</a>
 </form>

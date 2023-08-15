@@ -4,6 +4,10 @@ namespace JWForm.Models;
 
 public class Relatorio
 {
+    public Relatorio()
+    {
+    }
+
     public Relatorio(DateTime data, int videos, int publicacoes, int revisitas, int estudosBiblicos, int horas, string observacao, int publicadorId)
     {
         Data = data;
@@ -30,7 +34,6 @@ public class Relatorio
 
     public int RelatorioId { get; set; }
 
-    [StringLength(50, ErrorMessage = "O tamanho máximo é 50 caracteres")]
     [Required(ErrorMessage = "Selecione o mês")]
     [Display(Name = "Mês")]
     public DateTime Data { get; set; }
@@ -51,7 +54,7 @@ public class Relatorio
     [Display(Name = "Horas")]
     public int Horas { get; set; }
 
-    [StringLength(200, ErrorMessage = "O tamanho máximo é 200 caracteres")]
+    [StringLength(600, ErrorMessage = "O texto está muito grande")]
     [Display(Name = "Observação")]
     public string Observacao { get; set; }
 
